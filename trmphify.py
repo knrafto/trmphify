@@ -1,3 +1,4 @@
+import logging
 import re
 
 import bs4
@@ -7,6 +8,12 @@ import requests
 app = flask.Flask(__name__, static_url_path='')
 app.secret_key = 'bZEWlYuyqWZHPBPYgrwiBSlD'
 
+@app.before_first_request
+def set_up_logging():
+    if not app.debug:
+        app.logger.addHandler(logging.StreamHandler())
+        app.logger.setLevel(logging.INFO)
+
 @app.route('/')
 def index():
     return flask.render_template('index.html')
@@ -14,13 +21,12 @@ def index():
 @app.route('/convert', methods=['POST'])
 def convert_and_redirect():
     game = flask.request.form.get('game', '')
-    app.logger.info('Converting game: ' + game)
     try:
         url = convert(game)
-        app.logger.info('Converted to URL: ' + url)
+        app.logger.info('Game "{}" converted to {}'.format(game, url))
     except ConversionException as e:
         flask.flash(str(e))
-        app.logger.warning('Conversion failed: ' + str(e))
+        app.logger.warning('Game "{}" conversion failed ({})'.format(game, str(e)))
         url = flask.url_for('index')
     return flask.redirect(url)
 
