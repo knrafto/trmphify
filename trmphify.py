@@ -44,6 +44,7 @@ def maybe(x):
     return x
 
 def convert(game):
+    game = game.strip()
     if not game:
         raise ConversionException('Enter a Little Golem URL or game ID')
     if game.startswith('#'):
