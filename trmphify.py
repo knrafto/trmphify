@@ -46,6 +46,8 @@ def maybe(x):
 def convert(game):
     if not game:
         raise ConversionException('Enter a Little Golem URL or game ID')
+    if game.startswith('#'):
+        game = game[1:]
     if 'littlegolem.net' in game:
         url = game
     else:
