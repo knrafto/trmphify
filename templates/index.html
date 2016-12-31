@@ -25,6 +25,8 @@
   {% endwith %}
   </header>
   <article>
+    <p>Convert a <a href="https://littlegolem.net/jsp/main/">Little Golem</a>
+      Hex game into a <a href="http://www.trmph.com/">trmph.com</a> board</p>
     <form action="{{ url_for('convert_and_redirect') }}" method="POST">
       <input type="text" name="game" placeholder="Little Golem URL or game ID">
       <input type="submit" value="Go">
