@@ -4,7 +4,7 @@ import bs4
 import flask
 import requests
 
-app = flask.Flask(__name__)
+app = flask.Flask(__name__, static_url_path='')
 app.secret_key = 'bZEWlYuyqWZHPBPYgrwiBSlD'
 
 @app.route('/')
