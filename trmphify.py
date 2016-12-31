@@ -14,10 +14,13 @@ def index():
 @app.route('/convert', methods=['POST'])
 def convert_and_redirect():
     game = flask.request.form.get('game', '')
+    app.logger.info('Converting game: ' + game)
     try:
         url = convert(game)
+        app.logger.info('Converted to URL: ' + url)
     except ConversionException as e:
         flask.flash(str(e))
+        app.logger.warning('Conversion failed: ' + str(e))
         url = flask.url_for('index')
     return flask.redirect(url)
 
