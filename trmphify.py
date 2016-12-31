@@ -24,7 +24,7 @@ def convert_and_redirect():
         url = flask.url_for('index')
     return flask.redirect(url)
 
-SIZE_REGEX = re.compile(r'^\s*Hex( [^-]+)-Size (\d+)')
+SIZE_REGEX = re.compile(r'^\s*Hex( [^-]+)?-Size (\d+)')
 MOVE_LIST_REGEX = re.compile(r'Move List')
 MOVE_REGEX = re.compile(r'[a-z]\d{1,2}')
 
