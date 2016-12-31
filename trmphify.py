@@ -39,10 +39,12 @@ def maybe(x):
 def convert(game):
     if not game:
         raise ConversionException('Enter a Little Golem URL or game ID')
-    if game.startswith('http'):
+    if 'littlegolem.net' in game:
         url = game
     else:
         url = 'https://littlegolem.net/jsp/game/game.jsp?gid=' + game
+    if not url.startswith('http'):
+        url = 'https://' + url
     try:
         response = requests.get(url, timeout=5)
         response.raise_for_status()
