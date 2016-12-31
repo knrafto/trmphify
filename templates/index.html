@@ -10,27 +10,32 @@
   <meta name="msapplication-config" content="browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link href='http://fonts.googleapis.com/css?family=Nobile' rel='stylesheet' type='text/css'>
   <title>TRMPHify</title>
 </head>
 <body>
-  <header>
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-  {% endwith %}
-  </header>
-  <article>
-    <p>Convert a <a href="https://littlegolem.net/jsp/main/">Little Golem</a>
-      Hex game into a <a href="http://www.trmph.com/">trmph.com</a> board</p>
-    <form action="{{ url_for('convert_and_redirect') }}" method="POST">
-      <input type="text" name="game" placeholder="Little Golem URL or game ID">
-      <input type="submit" value="Go">
-    </form>
-  </article>
+  <div class="messages">
+  {% for message in get_flashed_messages() %}
+    <div class="message">{{ message }}</div>
+  {% endfor %}
+  </div>
+  <div class="container container-table">
+    <div class="row vertical-center-row">
+      <div class="col-md-6 col-md-offset-3">
+        <p class="text-center margin-bottom">Convert a <a href="https://littlegolem.net/jsp/main/">Little Golem</a>
+          Hex game to a <a href="http://www.trmph.com/">trmph.com</a> board</p>
+        <form action="{{ url_for('convert_and_redirect') }}" method="POST">
+          <div class="input-group">
+            <input type="text" name="game" class="form-control" placeholder="Little Golem URL or game ID">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Go</button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

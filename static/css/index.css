@@ -1,0 +1,31 @@
+html, body, .container-table {
+    height: 100%;
+}
+.container-table {
+    display: table;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+.margin-bottom {
+    margin-bottom: 25px;
+}
+.messages {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 20px;
+}
+.message {
+    width: 540px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
