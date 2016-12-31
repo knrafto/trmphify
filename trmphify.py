@@ -1,12 +1,13 @@
 import logging
 import re
+import os
 
 import bs4
 import flask
 import requests
 
 app = flask.Flask(__name__, static_url_path='')
-app.secret_key = 'bZEWlYuyqWZHPBPYgrwiBSlD'
+app.secret_key = os.getenv('SECRET_KEY', 'dev-secret-key')
 
 @app.before_first_request
 def set_up_logging():
