@@ -24,7 +24,7 @@ def convert_and_redirect():
         url = flask.url_for('index')
     return flask.redirect(url)
 
-SIZE_REGEX = re.compile(r'Size (\d+)')
+SIZE_REGEX = re.compile(r'^\s*Hex( [^-]+)-Size (\d+)')
 MOVE_LIST_REGEX = re.compile(r'Move List')
 MOVE_REGEX = re.compile(r'[a-z]\d{1,2}')
 
@@ -51,7 +51,7 @@ def convert(game):
         raise ConversionException('Could not download game')
     soup = bs4.BeautifulSoup(html, 'html.parser')
     title = maybe(soup.find(class_='page-title')).text
-    size = int(maybe(re.search(SIZE_REGEX, title)).group(1))
+    size = int(maybe(re.search(SIZE_REGEX, title)).group(2))
     move_list_tag = maybe(soup.find(text=MOVE_LIST_REGEX))
     move_list_box = maybe(move_list_tag.find_parent(class_='portlet'))
     moves = [tag.text.split('.', 1)[-1] for tag in move_list_box.find_all('b')]
