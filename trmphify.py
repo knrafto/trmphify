@@ -44,7 +44,7 @@ def convert(game):
     else:
         url = 'https://littlegolem.net/jsp/game/game.jsp?gid=' + game
     try:
-        response = requests.get(url, )
+        response = requests.get(url, timeout=5)
         response.raise_for_status()
         html = response.text
     except requests.exceptions.RequestException:
